@@ -19,4 +19,9 @@
 #       --json JSON     either inline JSON string or @path/to/file.json with request body (default JSON (0 bytes))
 #       --path string   Desired path for the repo in the workspace.
 
-databricks repos create https://github.com/leandrohmvieira/databricks-devops  github --path /Workspace/Users/leandro.vieira@databricks.com/output_repo/created-repo
+REPO_URL="https://github.com/leandrohmvieira/databricks-devops"
+GIT_PROVIDER="github"
+WORKSPACE_PATH="/Workspace/Users/leandro.vieira@databricks.com/output_repo/created-repo"
+
+# Create a repo using the variables
+databricks repos create $REPO_URL $GIT_PROVIDER --path $WORKSPACE_PATH
