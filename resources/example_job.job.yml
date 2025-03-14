@@ -1,0 +1,38 @@
+resources:
+  jobs:
+    example_job:
+      name: example_job
+      job_clusters:
+        - new_cluster:
+            spark_env_vars:
+              PYSPARK_PYTHON: /databricks/python3/bin/python3
+            node_type_id: Standard_D4ds_v5
+            num_workers: 8
+            runtime_engine: PHOTON
+            enable_elastic_disk: true
+            azure_attributes:
+              spot_bid_max_price: -1
+              availability: ON_DEMAND_AZURE
+              first_on_demand: 1
+            spark_version: 15.4.x-scala2.12
+            data_security_mode: SINGLE_USER
+          job_cluster_key: New_job_cluster
+      tasks:
+        - task_key: example_notebook
+          job_cluster_key: New_job_cluster
+          email_notifications: {}
+          notebook_task:
+            notebook_path: ../src/example_notebook.ipynb
+            source: WORKSPACE
+          run_if: ALL_SUCCESS
+      email_notifications:
+        no_alert_for_skipped_runs: true
+        on_failure:
+          - leandro.vieira@databricks.com
+      max_concurrent_runs: 1
+      trigger:
+        pause_status: UNPAUSED
+        periodic:
+          interval: 1
+          unit: DAYS
+      webhook_notifications: {}

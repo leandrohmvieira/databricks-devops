@@ -21,7 +21,7 @@ targets:
   prod:
     mode: production
     workspace:
-      host: https://adb-4562026214062884.4.azuredatabricks.net
+      host: https://adb-984752964297111.11.azuredatabricks.net/
       # We explicitly deploy to /Workspace/Users/leandro.vieira@databricks.com to make sure we only have a single copy.
       root_path: /Workspace/Users/leandro.vieira@databricks.com/.bundle/${bundle.name}/${bundle.target}
     permissions:
