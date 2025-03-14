@@ -1,0 +1,16 @@
+resources:
+  jobs:
+    job_serverless:
+      name: job serverless
+      trigger:
+        pause_status: UNPAUSED
+        periodic:
+          interval: 1
+          unit: DAYS
+      tasks:
+        - task_key: asdasd
+          notebook_task:
+            notebook_path: ../src/example_notebook.ipynb
+            source: WORKSPACE
+      queue:
+        enabled: true
